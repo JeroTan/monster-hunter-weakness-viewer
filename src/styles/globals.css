@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+    /* Define your custom theme variables here */
+}
+
+@layer base {
+    body {
+        @apply bg-white text-black dark:bg-zinc-900 dark:text-white transition-colors duration-300;
+    }
+}

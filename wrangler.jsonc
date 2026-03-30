@@ -1,0 +1,94 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"main": "src/cloudflare/worker.ts",
+	"name": "monster-hunter-weakness-viewer",
+	"compatibility_date": "2025-09-15",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
+	"preview_urls": false,
+	"workers_dev": true,
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1
+	},
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "ExampleDurableObject",
+				"name": "EXAMPLE_DURABLE_OBJECT"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["ExampleDurableObject"]
+		}
+	],
+	"env": {
+		"development": {
+			"name": "monster-hunter-weakness-viewer-development",
+			"vars": {
+				"SECRET_ENVIRONMENT_STATUS": "dev"
+			},
+			"durable_objects": {
+				"bindings": [
+					{
+						"class_name": "ExampleDurableObject",
+						"name": "EXAMPLE_DURABLE_OBJECT"
+					}
+				]
+			},
+			"migrations": [
+				{
+					"tag": "v1",
+					"new_sqlite_classes": ["ExampleDurableObject"]
+				}
+			]
+		},
+		"staging": {
+			"name": "monster-hunter-weakness-viewer-staging",
+			"vars": {
+				"SECRET_ENVIRONMENT_STATUS": "staging"
+			},
+			"durable_objects": {
+				"bindings": [
+					{
+						"class_name": "ExampleDurableObject",
+						"name": "EXAMPLE_DURABLE_OBJECT"
+					}
+				]
+			},
+			"migrations": [
+				{
+					"tag": "v1",
+					"new_sqlite_classes": ["ExampleDurableObject"]
+				}
+			]
+		},
+        "production": {
+			"name": "monster-hunter-weakness-viewer",
+			"vars": { "SECRET_ENVIRONMENT_STATUS": "live" },
+			"durable_objects": {
+				"bindings": [
+					{
+						"class_name": "ExampleDurableObject",
+						"name": "EXAMPLE_DURABLE_OBJECT"
+					}
+				]
+			},
+			"migrations": [
+				{
+					"tag": "v1",
+					"new_sqlite_classes": ["ExampleDurableObject"]
+				}
+			]
+		}
+	}
+}
